@@ -107,7 +107,7 @@ MessageHandler.instance.delegate=self
       // viewWillAppear(true)
         
         
-        var th:String=UserDefaults.standard.value(forKey: "ThreadID") as! String
+        let th:String=UserDefaults.standard.value(forKey: "ThreadID") as! String
         var a:String!
         var b:String!
         if(th=="")
@@ -133,7 +133,7 @@ MessageHandler.instance.delegate=self
         let d:String=dateformatter.string(from: date)
         
 let t=datefile ()
-        var m=t.getDate(date: d, FLAG: "D", t: d)
+        let m=t.getDate(date: d, FLAG: "D", t: d)
         
         
         if(LastMsgList.count>0)
@@ -175,7 +175,7 @@ let t=datefile ()
         
         
         
-        var th:String=UserDefaults.standard.value(forKey: "ThreadID") as! String
+        let th:String=UserDefaults.standard.value(forKey: "ThreadID") as! String
         var a:String!
         var b:String!
         if(th=="")
@@ -194,7 +194,7 @@ let t=datefile ()
         let d:String=dateformatter.string(from: date)
         
         let t=datefile ()
-        var m=t.getDate(date: d, FLAG: "D", t: d)
+        let m=t.getDate(date: d, FLAG: "D", t: d)
         
         
         if(LastMsgList.count>0)
@@ -250,8 +250,8 @@ let t=datefile ()
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination=segue.destination as? SelectMessageCenterListVC{
-            if let msg=sender as?  LastMsgDtls{
+        if segue.destination is SelectMessageCenterListVC{
+            if (sender as?  LastMsgDtls) != nil{
                 print("open")
             }
         }
@@ -667,7 +667,7 @@ let t=datefile ()
                 if let snapDict = snapshot.value as? [String:AnyObject] {
                     
                     for child in snapDict{
-                        var ID = child.key as! String
+                        let ID = child.key as! String
                         let shotKey = snapshot.children.nextObject() as! FIRDataSnapshot
                         
                         
@@ -842,7 +842,7 @@ let t=datefile ()
                 if let snapDict = snapshot.value as? [String:AnyObject] {
                     
                     for child in snapDict{
-                        var ID = child.key as! String
+                      //  var ID = child.key as! String
                         let shotKey = snapshot.children.nextObject() as! FIRDataSnapshot
                         
                         

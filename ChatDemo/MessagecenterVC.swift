@@ -371,9 +371,9 @@ class MessageCenterVC: UIViewController ,UIPickerViewDelegate,UIPickerViewDataSo
                         
                     }
                     
-                    var t=storage.reference(withPath: "UserRegistration").child(child.key).child("profileimage")
+                    let t=storage.reference(withPath: "UserRegistration").child(child.key).child("profileimage")
                     
-                    var uid:String=UserDefaults.standard.value(forKey: "KEY") as! String
+                    let uid:String=UserDefaults.standard.value(forKey: "KEY") as! String
                     
                     cuid.userId=child.key
                     if(cuid.userId==uid)
@@ -441,7 +441,7 @@ func updatethresadlist(text:AnyObject,time:AnyObject,sendername:AnyObject)
     let key:String=(UserDefaults.standard.value(forKey: "ChildKey") as? String)!
     print(key)
     let userReference = dataref.child("ThreadList").child(key)
-    var t1:String!
+   // var t1:String!
     //
     //        if(time.contains(" "))
     //        {

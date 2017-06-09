@@ -154,7 +154,7 @@ class SelectMessageCenterListVC: JSQMessagesViewController, UITableViewDataSourc
         
         print(d)
         
-      var thid:String=(UserDefaults.standard.value(forKey: "ThreadID") as? String)!
+      let thid:String=(UserDefaults.standard.value(forKey: "ThreadID") as? String)!
         
         
         
@@ -167,7 +167,7 @@ class SelectMessageCenterListVC: JSQMessagesViewController, UITableViewDataSourc
             if let snapDict = snapshot.value as? [String:AnyObject] {
                 
                 for child in snapDict{
-                    var ID = child.key as! String
+                    let ID = child.key as! String
                     let shotKey = snapshot.children.nextObject() as! FIRDataSnapshot
                     print(snapshot.key)
                     
@@ -257,7 +257,7 @@ class SelectMessageCenterListVC: JSQMessagesViewController, UITableViewDataSourc
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var thid:String=(UserDefaults.standard.value(forKey: "ThreadID") as? String)!
+        let thid:String=(UserDefaults.standard.value(forKey: "ThreadID") as? String)!
         if let pic=info[UIImagePickerControllerOriginalImage] as? UIImage{
             
             let img = UIImageJPEGRepresentation(pic, 0.01)
@@ -314,7 +314,7 @@ class SelectMessageCenterListVC: JSQMessagesViewController, UITableViewDataSourc
         
         
         let placeHolderImage = #imageLiteral(resourceName: "user_icon")//UIImage(named: "usr")
-        var avatarImage = JSQMessagesAvatarImage(avatarImage: nil, highlightedImage: nil, placeholderImage: placeHolderImage)
+        let avatarImage = JSQMessagesAvatarImage(avatarImage: nil, highlightedImage: nil, placeholderImage: placeHolderImage)
         
              if let messageID = message.senderId {
             
@@ -791,7 +791,7 @@ picker.delegate=self
             if let snapDict = snapshot.value as? [String:AnyObject] {
                 
                 for child in snapDict{
-                    var ID = child.key as! String
+                    let ID = child.key as! String
                     let shotKey = snapshot.children.nextObject() as! FIRDataSnapshot
                     print(snapshot.key)
                     
@@ -849,7 +849,7 @@ picker.delegate=self
                    DispatchQueue.main.async {
                         let photo=JSQPhotoMediaItem(image:i)
                         
-                        if let senderID=self.senderId{
+                        if (self.senderId) != nil{
                             photo?.appliesMediaViewMaskAsOutgoing=true
                             
                         }else{
@@ -866,7 +866,7 @@ picker.delegate=self
             }
             else{
                 let video=JSQVideoMediaItem(fileURL: mediaurl, isReadyToPlay: true)
-                if let senderID=self.senderId{
+                if (self.senderId) != nil{
                     video?.appliesMediaViewMaskAsOutgoing=true
                 }
                 else{
@@ -889,7 +889,7 @@ picker.delegate=self
         
         
 let dataref=FIRDatabase.database().reference()
-        var thid:String=(UserDefaults.standard.value(forKey: "ThreadID") as? String)!
+        //var thid:String=(UserDefaults.standard.value(forKey: "ThreadID") as? String)!
         let msg:[String:AnyObject]=["senderId":senderID as AnyObject ,"senderName":senderName as AnyObject ,"msg":text as AnyObject ,"threadId":"" as AnyObject,"timestamp":time as AnyObject ,"threadname":"" as AnyObject ]
         
         dataref.child("ThreadListNew").childByAutoId().setValue(msg)
@@ -904,7 +904,7 @@ let dataref=FIRDatabase.database().reference()
         let key:String=(UserDefaults.standard.value(forKey: "ChildKey") as? String)!
         print(key)
         let userReference = dataref.child("ThreadList").child(key)
-        var t1:String!
+       // var t1:String!
         
         
         

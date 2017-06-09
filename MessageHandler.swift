@@ -117,7 +117,7 @@ class MessageHandler{
         
         
         
-        var p:String=UserDefaults.standard.value(forKey: "PAGE") as! String
+        let p:String=UserDefaults.standard.value(forKey: "PAGE") as! String
         print(p)
         
         
@@ -224,7 +224,7 @@ class MessageHandler{
             
             
             
-            let image1=NSUUID().uuidString
+      //      let image1=NSUUID().uuidString
             let st=FIRStorage.storage().reference().child("MediaImage").child(senderID+"\(image).png").put(image!, metadata: nil){
                 (metadata:FIRStorageMetadata?,err:Error?)
                 in
@@ -476,8 +476,8 @@ class MessageHandler{
         
         
         
-        var a=receiver.components(separatedBy: ",")[0]
-        var b=receiver.components(separatedBy: ",")[1]
+        let a=receiver.components(separatedBy: ",")[0]
+        let b=receiver.components(separatedBy: ",")[1]
         
         dataref.child("Messages").observe(FIRDataEventType.childAdded) {(snapshot:FIRDataSnapshot) in
             
@@ -486,13 +486,13 @@ class MessageHandler{
                 if let thid=data["threadId"] as? String{
                     if(thid==receiver || thid==b+","+a)
                     {
-                        if let senderID=data["senderId"] as? String{
+                        if (data["senderId"] as? String) != nil{
                             //                    if(senderID==UserDefaults.standard.value(forKey: "KEY") as! String || ){
-                            if let sendername=data["senderName"] as? String{
-                                if let text=data["msg"] as? String {
+                            if (data["senderName"] as? String) != nil{
+                                if (data["msg"] as? String) != nil {
                                     
                                     
-                                    if let time=data["time"] as? Date{
+                                    if (data["time"] as? Date) != nil{
                                         //self.delegate?.messgaeReceived(senderID: senderID,senderName: "AMN", text: text,date:time)
                                         
                                         
